@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { JuegoPage } from '../juego/juego';
+import { OpcionesPage } from '../opciones/opciones';
+import { EstadisticasPage } from '../estadisticas/estadisticas';
 
 /**
  * Generated class for the MenuPage page.
@@ -25,5 +27,13 @@ export class MenuPage {
 
   iniciarjuego():void{
     this.navCtrl.push(JuegoPage);
+  }
+
+  opciones():void{
+    this.navCtrl.push(OpcionesPage);
+  }
+
+  estadisticas():void{
+    this.navCtrl.push(EstadisticasPage);
   }
 }

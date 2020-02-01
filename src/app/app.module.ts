@@ -22,6 +22,8 @@ import { HomePage } from '../pages/home/home';
 import { RegistrarPage } from '../pages/registrar/registrar';
 import { MenuPage } from '../pages/menu/menu';
 import { JuegoPage } from '../pages/juego/juego';
+import { OpcionesPage } from '../pages/opciones/opciones';
+import { EstadisticasPage } from '../pages/estadisticas/estadisticas';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { JuegoPage } from '../pages/juego/juego';
     HomePage,
     RegistrarPage,
     MenuPage,
-    JuegoPage
+    JuegoPage,
+    OpcionesPage,
+    EstadisticasPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,9 @@ import { JuegoPage } from '../pages/juego/juego';
     HomePage,
     RegistrarPage,
     MenuPage,
-    JuegoPage
+    JuegoPage,
+    OpcionesPage,
+    EstadisticasPage
   ],
   providers: [
     StatusBar,
