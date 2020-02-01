@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { DatosProvider } from './../../providers/datos/datos';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the RegistrarPage page.
@@ -8,18 +10,40 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-registrar',
   templateUrl: 'registrar.html',
 })
 export class RegistrarPage {
+  
+  user = {email:'', name:'', passw:'', MaxRecord:0};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public datosProvider:DatosProvider, public alertCtrl:AlertController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegistrarPage');
+  }
+
+  Signin(){
+    this.datosProvider.RegisterUser(this.user.email, this.user.passw).then((userr) => {
+      //El Usuario se ha creado correctamente, añadimos los datos in-game a la bd.
+      this.datosProvider.AddUser(this.user.name, this.user.email, this.user.MaxRecord);
+      let alert = this.alertCtrl.create({
+        title:'Registro completo',
+        subTitle: 'Ingrese sus nuevas credenciales en la pantalla de login',
+        buttons: ['Aceptar'],
+      });
+      this.navCtrl.push(HomePage);
+    }).catch((err) => {
+      let alert = this.alertCtrl.create({
+        title:'Error',
+        subTitle: err.message,
+        buttons: ['Aceptar']
+      });
+      alert.present();
+    })
   }
 
 }

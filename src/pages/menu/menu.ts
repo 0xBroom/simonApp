@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { JuegoPage } from '../juego/juego';
 import { OpcionesPage } from '../opciones/opciones';
 import { EstadisticasPage } from '../estadisticas/estadisticas';
+import { DatosProvider } from './../../providers/datos/datos';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the MenuPage page.
@@ -18,7 +20,7 @@ import { EstadisticasPage } from '../estadisticas/estadisticas';
 })
 export class MenuPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public alertCtrl:AlertController, public navCtrl: NavController, public navParams: NavParams, public datosProvider:DatosProvider) {
   }
 
   ionViewDidLoad() {
@@ -35,5 +37,19 @@ export class MenuPage {
 
   estadisticas():void{
     this.navCtrl.push(EstadisticasPage);
+  }
+
+  cerrarSession(){
+    this.datosProvider.Logout().then((userr) => {
+      //Se ha cerrado sesion correctamente.
+      this.navCtrl.push(HomePage);
+    }).catch((err) => {
+      let alert = this.alertCtrl.create({
+        title:'Error',
+        subTitle: err.message,
+        buttons: ['Aceptar']
+      });
+      alert.present();
+    });
   }
 }

@@ -7,15 +7,15 @@
             <ion-list no-lines>
                 <ion-item>
                     <ion-label style="color: black;" floating>Usuario</ion-label>
-                    <ion-input type="text"></ion-input>
+                    <ion-input [(ngModel)]="user.email" type="text"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label style="color: black;" floating>Contraseña</ion-label>
-                    <ion-input type="password"></ion-input>
+                    <ion-input [(ngModel)]="user.password" type="password"></ion-input>
                 </ion-item>
                 <ion-item>
                 </ion-item>
-                <button (click)="menu()" style="text-transform: none;font-size: 13px;" ion-button outline block color="danger">Entrar</button>
+                <button (click)="Login()" style="text-transform: none;font-size: 13px;" ion-button outline block color="danger">Entrar</button>
                 <ion-item text-center>
                     O
                 </ion-item>
