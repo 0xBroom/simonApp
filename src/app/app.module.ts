@@ -22,11 +22,21 @@ export const firebaseConfig = { //Claves de autenticación de firebase.
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DatosProvider } from '../providers/datos/datos';
+import { RegistrarPage } from '../pages/registrar/registrar';
+import { MenuPage } from '../pages/menu/menu';
+import { JuegoPage } from '../pages/juego/juego';
+import { OpcionesPage } from '../pages/opciones/opciones';
+import { EstadisticasPage } from '../pages/estadisticas/estadisticas';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    RegistrarPage,
+    MenuPage,
+    JuegoPage,
+    OpcionesPage,
+    EstadisticasPage
   ],
   imports: [
     BrowserModule,
@@ -39,7 +49,12 @@ import { DatosProvider } from '../providers/datos/datos';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    RegistrarPage,
+    MenuPage,
+    JuegoPage,
+    OpcionesPage,
+    EstadisticasPage
   ],
   providers: [
     StatusBar,

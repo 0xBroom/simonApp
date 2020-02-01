@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { DatosProvider } from './../../providers/datos/datos';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
+import { RegistrarPage } from '../registrar/registrar';
+import { MenuPage } from '../menu/menu';
 
 @Component({
   selector: 'page-home',
@@ -25,4 +27,13 @@ export class HomePage {
       alert.present();
     })
   }
+
+  registrarse():void{
+    this.navCtrl.push(RegistrarPage);
+  }
+
+  menu():void{
+    this.navCtrl.push(MenuPage);
+  }
+
 }
