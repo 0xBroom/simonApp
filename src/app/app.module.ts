@@ -19,11 +19,17 @@ export const firebaseConfig = {
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { RegistrarPage } from '../pages/registrar/registrar';
+import { MenuPage } from '../pages/menu/menu';
+import { JuegoPage } from '../pages/juego/juego';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    RegistrarPage,
+    MenuPage,
+    JuegoPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +42,10 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    RegistrarPage,
+    MenuPage,
+    JuegoPage
   ],
   providers: [
     StatusBar,

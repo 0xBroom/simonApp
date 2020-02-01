@@ -2,27 +2,25 @@
   <br/>
   <h1>SIMONXD</h1>
   <br/>
-  <br/>
   <ion-card>
     <ion-card-content>
       <ion-list no-lines>
         <ion-item>
-          <ion-label floating>Usuario</ion-label>
+          <ion-label style="color: black;" floating>Usuario</ion-label>
           <ion-input type="text"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label floating>Contraseña</ion-label>
+          <ion-label style="color: black;" floating>Contraseña</ion-label>
           <ion-input type="password"></ion-input>
         </ion-item>
         <ion-item>
         </ion-item>
-        <button style="text-transform: none;font-size: 13px;" ion-button outline block color="danger">Entrar</button>
+        <button (click)="menu()" style="text-transform: none;font-size: 13px;" ion-button outline block color="danger">Entrar</button>
         <ion-item text-center>
           O
         </ion-item>
-        <button style="text-transform: none;font-size: 13px;" ion-button outline block color="danger">Registrarse</button>
+        <button (click)="registrarse()" style="text-transform: none;font-size: 13px;" ion-button outline block color="danger">Registrarse</button>
       </ion-list>
-      
     </ion-card-content>
   </ion-card>
 </ion-content>
