@@ -30,11 +30,6 @@ export class RegistrarPage {
     this.datosProvider.RegisterUser(this.user.email, this.user.passw).then((userr) => {
       //El Usuario se ha creado correctamente, añadimos los datos in-game a la bd.
       this.datosProvider.AddUser(this.user.name, this.user.email, this.user.MaxRecord);
-      let alert = this.alertCtrl.create({
-        title:'Registro completo',
-        subTitle: 'Ingrese sus nuevas credenciales en la pantalla de login',
-        buttons: ['Aceptar'],
-      });
       this.navCtrl.push(HomePage);
     }).catch((err) => {
       let alert = this.alertCtrl.create({
