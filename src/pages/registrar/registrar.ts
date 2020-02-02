@@ -17,7 +17,7 @@ import { HomePage } from '../home/home';
 })
 export class RegistrarPage {
   
-  user = {email:'', name:'', passw:'', MaxRecord:0};
+  user = {email:'', name:'', passw:'' , reppassw:'' , MaxRecord:0};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public datosProvider:DatosProvider, public alertCtrl:AlertController) {
   }
@@ -27,18 +27,27 @@ export class RegistrarPage {
   }
 
   Signin(){
-    this.datosProvider.RegisterUser(this.user.email, this.user.passw).then((userr) => {
-      //El Usuario se ha creado correctamente, añadimos los datos in-game a la bd.
-      this.datosProvider.AddUser(this.user.name, this.user.email, this.user.MaxRecord);
-      this.navCtrl.push(HomePage);
-    }).catch((err) => {
+    if(this.user.passw == this.user.reppassw){
+      this.datosProvider.RegisterUser(this.user.email, this.user.passw).then((userr) => {
+        //El Usuario se ha creado correctamente, añadimos los datos in-game a la bd.
+        this.datosProvider.AddUser(this.user.name, this.user.email, this.user.MaxRecord);
+        this.navCtrl.push(HomePage);
+      }).catch((err) => {
+        let alert = this.alertCtrl.create({
+          title:'Error',
+          subTitle: err.message,
+          buttons: ['Aceptar']
+        });
+        alert.present();
+      })
+    }else{
       let alert = this.alertCtrl.create({
         title:'Error',
-        subTitle: err.message,
+        subTitle: 'Las contraseñas no coinciden.',
         buttons: ['Aceptar']
       });
       alert.present();
-    })
+    }
   }
 
 }
