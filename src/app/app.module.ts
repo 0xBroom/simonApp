@@ -3,11 +3,13 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { HttpClientModule} from "@angular/common/http";
+
+//Modulos de fire base para la bd y para la auteticación.
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from "angularfire2/auth";
-export const firebaseConfig = {
+export const firebaseConfig = { //Claves de autenticación de firebase.
   apiKey: "AIzaSyB_3BsGcCHTdhKtI_VsH6781E4edtyYwQM",
     authDomain: "simonapp-46c44.firebaseapp.com",
     databaseURL: "https://simonapp-46c44.firebaseio.com",
@@ -19,11 +21,22 @@ export const firebaseConfig = {
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { DatosProvider } from '../providers/datos/datos';
+import { RegistrarPage } from '../pages/registrar/registrar';
+import { MenuPage } from '../pages/menu/menu';
+import { JuegoPage } from '../pages/juego/juego';
+import { OpcionesPage } from '../pages/opciones/opciones';
+import { EstadisticasPage } from '../pages/estadisticas/estadisticas';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    RegistrarPage,
+    MenuPage,
+    JuegoPage,
+    OpcionesPage,
+    EstadisticasPage
   ],
   imports: [
     BrowserModule,
@@ -31,17 +44,23 @@ import { HomePage } from '../pages/home/home';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    RegistrarPage,
+    MenuPage,
+    JuegoPage,
+    OpcionesPage,
+    EstadisticasPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DatosProvider
   ]
 })
 export class AppModule {}
