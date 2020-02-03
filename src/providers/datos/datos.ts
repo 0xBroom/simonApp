@@ -132,4 +132,7 @@ export class DatosProvider {
     return MaxRecords;
   }
 
+  //TODO: Método que devuelve la puntuación máxima del usuario en sesion.
+  //TODO: Nuevo campo boolean en la base de datos para controlar el sonido en la aplicación.
+
 }
