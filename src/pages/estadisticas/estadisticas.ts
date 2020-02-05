@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DatosProvider } from './../../providers/datos/datos';
 
 /**
  * Generated class for the EstadisticasPage page.
@@ -13,13 +14,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-estadisticas',
   templateUrl: 'estadisticas.html',
 })
+
 export class EstadisticasPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  datos: [String, number][];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public datosProvider:DatosProvider) {
+    //this.datos=this.datosProvider.GetRecordList();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EstadisticasPage');
   }
-
 }
