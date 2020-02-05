@@ -125,7 +125,7 @@ export class DatosProvider {
     users = this.db.collection("usuarios");
     users.get().then(function(querySnapshot:any) {
       querySnapshot.forEach(function(doc:any) {
-          MaxRecords.push( [doc.data("user"), doc.data("MaxRecord")] );
+          MaxRecords.push( [doc.data().get("user"), doc.data().get("MaxRecord")] );
       });
     });
 
