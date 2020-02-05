@@ -17,10 +17,10 @@ import { DatosProvider } from './../../providers/datos/datos';
 
 export class EstadisticasPage {
 
-  datos: [String, number][];
+  datos: [string, number][];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public datosProvider:DatosProvider) {
-    //this.datos=this.datosProvider.GetRecordList();
+    this.datos=this.datosProvider.GetRecordList();
   }
 
   ionViewDidLoad() {

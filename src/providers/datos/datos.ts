@@ -118,21 +118,45 @@ export class DatosProvider {
    * y el record, de todos los usuarios registrados.
    * @returns MaxRecords;
    */
-  GetRecordList():[String, number][]{
-    var MaxRecords: [String, number][];
+  GetRecordList():[string, number][]{
+    var MaxRecords: [string, number][] = [["", 0]];
     var users:any;
 
-    users = this.db.collection("usuarios");
-    users.get().then(function(querySnapshot:any) {
-      querySnapshot.forEach(function(doc:any) {
-          MaxRecords.push( [doc.data().get("user"), doc.data().get("MaxRecord")] );
+    try {
+      this.db.collection("usuarios").get().forEach(function(querySnapshot:any) {
+          querySnapshot.forEach(function(doc:any) {
+            MaxRecords.push( [doc.data()["user"], doc.data()["MaxRecord"]] );
+          });
       });
-    });
+
+      MaxRecords.splice(0);
+    } catch (error) {
+      console.log("Error getting documents: ", error);
+    }
 
     return MaxRecords;
   }
 
-  //TODO: Método que devuelve la puntuación máxima del usuario en sesion.
+  /**
+   * Devuelve un numero que corresponde con la puntuación máxima del usuario logeado.
+   * @returns MaxRecord
+   */
+  GetUserMaxRecord():number{
+    var MaxRecord:number;
+    var user:any;
+
+    user = this.db.collection("usuarios");
+
+    user.where("email", "==", this.afAuth.auth.currentUser.email)
+    .get().forEach(function(querySnapshot:any) {
+      querySnapshot.forEach(function(doc:any) {
+        MaxRecord = doc.data()["MaxRecord"];
+      });
+    });
+
+    return MaxRecord;
+  }
+
   //TODO: Nuevo campo boolean en la base de datos para controlar el sonido en la aplicación.
 
 }
