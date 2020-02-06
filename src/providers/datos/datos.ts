@@ -144,11 +144,11 @@ export class DatosProvider {
   GetUserMaxRecord():number{
     var MaxRecord:number;
     var user:any;
+    //this.db.collection("usuarios").doc(this.afAuth.auth.currentUser.email);
 
-    user = this.db.collection("usuarios");
+    user = this.db.collection("usuarios").doc(this.afAuth.auth.currentUser.email);
 
-    user.where("email", "==", this.afAuth.auth.currentUser.email)
-    .get().forEach(function(querySnapshot:any) {
+    user.get().forEach(function(querySnapshot:any) {
       querySnapshot.forEach(function(doc:any) {
         MaxRecord = doc.data()["MaxRecord"];
       });
