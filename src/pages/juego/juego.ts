@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DatosProvider } from '../../providers/datos/datos'
 
 /**
  * Generated class for the JuegoPage page.
@@ -15,7 +16,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class JuegoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private highscore:number;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public datos:DatosProvider) {
+    this.highscore = datos.GetUserMaxRecord();
   }
 
   ionViewDidLoad() {
