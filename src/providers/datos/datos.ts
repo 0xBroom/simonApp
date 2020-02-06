@@ -120,7 +120,6 @@ export class DatosProvider {
    */
   GetRecordList():[string, number][]{
     var MaxRecords: [string, number][] = [["", 0]];
-    var users:any;
 
     try {
       this.db.collection("usuarios").get().forEach(function(querySnapshot:any) {
@@ -143,16 +142,18 @@ export class DatosProvider {
    */
   GetUserMaxRecord():number{
     var MaxRecord:number;
-    var user:any;
-    //this.db.collection("usuarios").doc(this.afAuth.auth.currentUser.email);
-
-    user = this.db.collection("usuarios").doc(this.afAuth.auth.currentUser.email);
-
-    user.get().forEach(function(querySnapshot:any) {
-      querySnapshot.forEach(function(doc:any) {
-        MaxRecord = doc.data()["MaxRecord"];
+    var email = this.afAuth.auth.currentUser.email;
+    
+    try {
+      this.db.collection("usuarios").get().forEach(function(querySnapshot:any) {
+          querySnapshot.forEach(function(doc:any) {
+            if(doc.data()["email"] == email)
+              MaxRecord = doc.data()["MaxRecord"];
+          });
       });
-    });
+    } catch (error) {
+      console.log("Error getting documents: ", error);
+    }
 
     return MaxRecord;
   }
