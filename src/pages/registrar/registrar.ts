@@ -27,23 +27,32 @@ export class RegistrarPage {
   }
 
   Signin(){
-    if(this.user.passw == this.user.reppassw){
-      this.datosProvider.RegisterUser(this.user.email, this.user.passw).then((userr) => {
-        //El Usuario se ha creado correctamente, añadimos los datos in-game a la bd.
-        this.datosProvider.AddUser(this.user.name, this.user.email, this.user.MaxRecord);
-        this.navCtrl.push(HomePage);
-      }).catch((err) => {
+    if(this.user.name.length<9){
+      if(this.user.passw == this.user.reppassw){
+        this.datosProvider.RegisterUser(this.user.email, this.user.passw).then((userr) => {
+          //El Usuario se ha creado correctamente, añadimos los datos in-game a la bd.
+          this.datosProvider.AddUser(this.user.name, this.user.email, this.user.MaxRecord);
+          this.navCtrl.push(HomePage);
+        }).catch((err) => {
+          let alert = this.alertCtrl.create({
+            title:'Error',
+            subTitle: err.message,
+            buttons: ['Aceptar']
+          });
+          alert.present();
+        })
+      }else{
         let alert = this.alertCtrl.create({
           title:'Error',
-          subTitle: err.message,
+          subTitle: 'Las contraseñas no coinciden.',
           buttons: ['Aceptar']
         });
         alert.present();
-      })
+      }
     }else{
       let alert = this.alertCtrl.create({
         title:'Error',
-        subTitle: 'Las contraseñas no coinciden.',
+        subTitle: 'El nombre de usuario solo puede contener 8 carácteres.',
         buttons: ['Aceptar']
       });
       alert.present();

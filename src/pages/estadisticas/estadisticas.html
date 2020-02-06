@@ -6,16 +6,16 @@
 -->
 <ion-content class="bg" padding>
     <br/>
-    <h1 style="font-weight: bold;font-size: 32px;">ESTADÍSTICAS</h1>
+    <h1 style="font-weight: bold;font-size: 28px;">PUNTUACIONES</h1>
     <br/>
     <br/>
+    <span style="margin-left:35px;color: #fff;float: left;">USUARIO</span><span style="margin-right:25px;color: #fff;float: right;">RECORD</span>
     <ion-card>
         <ion-card-content>
             <ion-list *ngFor="let item of datos" no-lines>
                 <ion-item>
-                    <ion-row justify-content-center>
-                        {{item[0]}} --> {{item[1]}}
-                    </ion-row>
+                    <span style="float: left;">{{item[0]}}</span>
+                    <span style="float: right;">{{item[1]}}</span>
                 </ion-item>
             </ion-list>
         </ion-card-content>
