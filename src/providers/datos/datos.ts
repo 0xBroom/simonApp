@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth'; //Autenticador para usuarios.
 import { AngularFirestore } from '@angular/fire/firestore';//Base de datos.
 
+
 /*
   Generated class for the DatosProvider provider.
 
@@ -38,8 +39,8 @@ export class DatosProvider {
 
   /**
    * @async
-   * @param {string} email 
-   * @param {string} password 
+   * @param {string} email  email del usuario.
+   * @param {string} password Constraseña del usuario.
    * @description Comprobación de Login.
    */
   async LoginUser(email:string, password:string){
@@ -53,24 +54,28 @@ export class DatosProvider {
   }
 
   /**
-   * @param {string} usuario Nombre de usuario
-   * @param {string} email email del usuario
-   * @param {number} MaxRecord puntuación máxima (por defecto es 0)
-   * @description Este método agrega los datos ingame del usuario, como su nick o su puntuación máxima, en cloud Firestore.
-   * Va de la mano con el metodo RegisterUser().
+   * @param {string, string, string, string} user Interface user que contiene el email, nombre, y la contraseña repetida.
+   * @description Este método agrega los datos ingame del usuario, como su nick o su puntuación máxima (por defecto 0), en cloud Firestore.
    */
-  AddUser(usuario:string, email:string, MaxRecord:number){
-    this.db.collection("usuarios").doc(email).set({
-      user: usuario,
-      email: email,
-      MaxRecord: MaxRecord
+  AddUser(user: {email:string, name:string, passw:string, reppassw:string}){
+
+    this.RegisterUser(user.email, user.passw).then((userr) => {
+      //El Usuario se ha creado correctamente, añadimos los datos in-game a la bd.
+      this.db.collection("usuarios").doc(user.email).set({
+        user: user.name,
+        email: user.email,
+        MaxRecord: 0
+      })
+      .then(function() {
+        console.log("Document successfully written!");
+      })
+      .catch(function(error) {
+        console.error("Error writing document: ", error);
+      });
+    }).catch((err) => {
+      console.log(err);
+      
     })
-    .then(function() {
-      console.log("Document successfully written!");
-    })
-    .catch(function(error) {
-      console.error("Error writing document: ", error);
-    });
 
   }
 
@@ -79,10 +84,9 @@ export class DatosProvider {
    * @param {string} email El email del usuario 
    * @param {string} password Contraseña del usuario
    * @description Este método agrega datos al autenticador para poder hacer los logins y asegurar los datos de sesion.
-   * Va de la mano con el método AddUser().
    * @returns {Promise} 
    */
-  async RegisterUser(email:string, password:string): Promise<any>{
+  private async RegisterUser(email:string, password:string): Promise<any>{
 
     try {
       const res = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
@@ -103,7 +107,7 @@ export class DatosProvider {
    */
   async SetMaxRecord(newMaxRecord:number){
     //Dentro de doc le paso el correo del usuario actual.
-    var user = this.db.collection("usuarios").doc(this.afAuth.auth.currentUser.email);
+    let user = this.db.collection("usuarios").doc(this.afAuth.auth.currentUser.email);
 
     try {
       await user.update({
