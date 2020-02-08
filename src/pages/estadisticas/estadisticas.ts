@@ -20,7 +20,11 @@ export class EstadisticasPage {
   datos: [string, number][];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public datosProvider:DatosProvider) {
-    this.datos=this.datosProvider.GetRecordList();
+    this.datosProvider.GetRecordList().then((respuesta:any) => {
+      this.datos = respuesta;
+    }).catch((error:any) => {
+      console.log("Ha habido un error "+error);
+    })
   }
 
   ionViewDidLoad() {

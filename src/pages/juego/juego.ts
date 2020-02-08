@@ -16,10 +16,16 @@ import { DatosProvider } from '../../providers/datos/datos'
 })
 export class JuegoPage {
 
-  private highscore:number;
+  highscore:number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public datos:DatosProvider) {
-    this.highscore = datos.GetUserMaxRecord();
+    datos.GetUserMaxRecord().then((respuesta:any) =>{
+      this.highscore = respuesta;
+      console.log(respuesta);
+      
+    }).catch((error:any) =>{
+      console.log("Ha habido un error "+error);
+    });
   }
 
   ionViewDidLoad() {
