@@ -36,7 +36,7 @@ export class JuegoPage {
       this.highscore = res;
     }).catch((error:any)=>{
       this.highscore = "N/A";
-    })
+    });
     for(let i =0;i<10;i++){
       this.sequence.push(this.getRandomColor());
     }
