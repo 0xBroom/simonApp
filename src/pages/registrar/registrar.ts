@@ -17,7 +17,7 @@ import { HomePage } from '../home/home';
 })
 export class RegistrarPage {
   
-  user = {email:'', name:'', passw:'' , reppassw:'' , MaxRecord:0};
+  user = {email:'', name:'', passw:'' , reppassw:''};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public datosProvider:DatosProvider, public alertCtrl:AlertController) {
   }
@@ -29,18 +29,8 @@ export class RegistrarPage {
   Signin(){
     if(this.user.name.length<9){
       if(this.user.passw == this.user.reppassw){
-        this.datosProvider.RegisterUser(this.user.email, this.user.passw).then((userr) => {
-          //El Usuario se ha creado correctamente, añadimos los datos in-game a la bd.
-          this.datosProvider.AddUser(this.user.name, this.user.email, this.user.MaxRecord);
-          this.navCtrl.push(HomePage);
-        }).catch((err) => {
-          let alert = this.alertCtrl.create({
-            title:'Error',
-            subTitle: err.message,
-            buttons: ['Aceptar']
-          });
-          alert.present();
-        })
+        this.datosProvider.AddUser(this.user);
+        this.navCtrl.push(HomePage);
       }else{
         let alert = this.alertCtrl.create({
           title:'Error',
