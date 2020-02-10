@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DatosProvider } from '../../providers/datos/datos'
-import { NgClass } from '@angular/common';
+import { AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the JuegoPage page.
@@ -17,7 +17,7 @@ import { NgClass } from '@angular/common';
 })
 export class JuegoPage {
 
-  private highscore:String = "0";
+  private highscore:number = 0;
   private sequence:String [] = [this.getRandomColor()];
   private r_sel:String;
   private r_hover:String;
@@ -27,23 +27,26 @@ export class JuegoPage {
   private g_hover:String;
   private y_sel:String;
   private y_hover:String;
+  private alert:any;
   private input:boolean = false;
   private pos:number = 0;
+  private score:number =0;
+  private showCheck = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public datos:DatosProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public datos:DatosProvider, public alertCtrl: AlertController) {
     //this.highscore = datos.GetUserMaxRecord();
     datos.GetUserMaxRecord().then((res:any)=>{
       this.highscore = res;
     }).catch((error:any)=>{
-      this.highscore = "N/A";
+      this.highscore = 0;
     });
-    for(let i =0;i<10;i++){
       this.sequence.push(this.getRandomColor());
-    }
       console.log(this.sequence);
       setTimeout(()=>{
         this.playsequence();
       }, 800);
+
+      this.alert = alert;
   }
 
   ionViewDidLoad() {
@@ -107,6 +110,7 @@ export class JuegoPage {
     }, 800);   
   }
 
+  //Permite que el usuario haga inputs
   allowInput(allow:Boolean):void{
     if(allow){
         this.r_hover = "r-hover";
@@ -123,19 +127,68 @@ export class JuegoPage {
     }
   }
 
+  //Verifica si el input es correcto
   checkInput(color:String){
     if(this.input){
       if(color != this.sequence[this.pos]){
         //Incorrecto
+        if(this.highscore < this.score){
+          this.datos.SetMaxRecord(this.score);
+          this.highscore = this.score;
+        }
+        this.showAlert();        
+        
       }else{
         //Correcto
+        this.score += 1;
         if(this.pos == this.sequence.length-1){
           //Sequencia completada
+          this.sequence.push(this.getRandomColor());
+          this.showCheck = true;
+          this.allowInput(false);
+          this.pos = 0;
+          setTimeout(()=>{
+              this.showCheck = false;
+              this.playsequence();
+          }, 1000);    
         }else{
           this.pos += 1;
         }       
       }
     }
+  }
+
+  reset():void{
+    this.score = 0;
+    this.pos = 0;
+    this.sequence = [this.getRandomColor(), this.getRandomColor()];
+  }
+
+  showAlert():void{
+    this.alert = this.alertCtrl.create({
+      title: '¡Has perdido!',
+      message: '¿Intentar de nuevo?',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'No, salir',
+          handler: () => {
+            console.log('Disagree clicked');
+            this.navCtrl.pop();
+          }
+        },
+        {
+          text: 'Si',
+          handler: () => {
+            console.log('Agree clicked');
+            this.reset();
+            this.playsequence();
+          }
+        },
+      ]
+    });
+
+    this.alert.present();
   }
 
 

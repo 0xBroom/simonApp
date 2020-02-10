@@ -51,21 +51,21 @@ page-juego {
     }
 
     //HOVER EVENTS
-    .r-hover:hover{
+    .r-hover:active{
         box-shadow: 0 0 5px #e20000, 
                     0 0 25px #e20000,
                     0 0 50px #e20000,
                     0 0 100px #e20000; 
      }
 
-     .b-hover:hover{
+     .b-hover:active{
         box-shadow: 0 0 5px #0105ff, 
                     0 0 25px #0105ff,
                     0 0 50px #0105ff,
                     0 0 100px #0105ff;
      }
 
-     .g-hover:hover{
+     .g-hover:active{
         
         box-shadow: 0 0 5px #18cf00, 
                     0 0 25px #18cf00,
@@ -73,7 +73,7 @@ page-juego {
                     0 0 100px #18cf00;
     }
 
-    .y-hover:hover{
+    .y-hover:active{
         box-shadow: 0 0 5px #eeff00, 
                     0 0 25px #eeff00,
                     0 0 50px #eeff00,
@@ -132,4 +132,34 @@ page-juego {
         padding: 5px;
     }
 
+    //Checkmark animation
+    .wrapper {
+        width: 100px;
+        margin: 4em auto 0;
+      }
+      
+      .checkmark {
+        stroke: green;
+        stroke-dashoffset: 745.74853515625;
+        stroke-dasharray: 745.74853515625;
+        animation: dash 2s ease-out forwards infinite;
+      }
+      
+      @keyframes dash {
+        0% {
+          stroke-dashoffset: 745.74853515625;
+        }
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      .checkmark-bg{
+        position:fixed; 
+        z-index: 999999;
+        background-color: white;
+        margin-left: 25%;
+        margin-top: 25%;
+         border-radius: 25px;
+      }
 }
