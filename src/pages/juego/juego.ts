@@ -17,7 +17,7 @@ import { NgClass } from '@angular/common';
 })
 export class JuegoPage {
 
-  private highscore:number = 0;
+  private highscore:String = "0";
   private sequence:String [] = [this.getRandomColor()];
   private r_sel:String;
   private r_hover:String;
@@ -32,6 +32,11 @@ export class JuegoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public datos:DatosProvider) {
     //this.highscore = datos.GetUserMaxRecord();
+    datos.GetUserMaxRecord().then((res:any)=>{
+      this.highscore = res;
+    }).catch((error:any)=>{
+      this.highscore = "N/A";
+    })
     for(let i =0;i<10;i++){
       this.sequence.push(this.getRandomColor());
     }
