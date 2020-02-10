@@ -4,7 +4,7 @@ page-juego {
         background: #050801;
     }
 
-    a{
+    .btn{
         position: relative;
         display: inline-block;
         width: 100%;
@@ -20,12 +20,7 @@ page-juego {
                     0 0 5px #e20000; 
      }
 
-     .r-button:hover{
-        box-shadow: 0 0 5px #e20000, 
-                    0 0 25px #e20000,
-                    0 0 50px #e20000,
-                    0 0 100px #e20000; 
-     }
+
 
     .b-button{
         background: #0105ff;
@@ -35,12 +30,7 @@ page-juego {
                     0 0 5px #0105ff;
     }
 
-    .b-button:hover{
-        box-shadow: 0 0 5px #0105ff, 
-                    0 0 25px #0105ff,
-                    0 0 50px #0105ff,
-                    0 0 100px #0105ff;
-     }
+
 
     .g-button{
         background: #18cf00;
@@ -50,13 +40,7 @@ page-juego {
                     0 0 5px #18cf00;
     }
 
-    .g-button:hover{
-        
-        box-shadow: 0 0 5px #18cf00, 
-                    0 0 25px #18cf00,
-                    0 0 50px #18cf00,
-                    0 0 100px #18cf00;
-    }
+
 
     .y-button{
         background: #eeff00;
@@ -66,13 +50,67 @@ page-juego {
                     0 0 5px #eeff00;
     }
 
-    .y-button:hover{
+    //HOVER EVENTS
+    .r-hover:hover{
+        box-shadow: 0 0 5px #e20000, 
+                    0 0 25px #e20000,
+                    0 0 50px #e20000,
+                    0 0 100px #e20000; 
+     }
+
+     .b-hover:hover{
+        box-shadow: 0 0 5px #0105ff, 
+                    0 0 25px #0105ff,
+                    0 0 50px #0105ff,
+                    0 0 100px #0105ff;
+     }
+
+     .g-hover:hover{
+        
+        box-shadow: 0 0 5px #18cf00, 
+                    0 0 25px #18cf00,
+                    0 0 50px #18cf00,
+                    0 0 100px #18cf00;
+    }
+
+    .y-hover:hover{
         box-shadow: 0 0 5px #eeff00, 
                     0 0 25px #eeff00,
                     0 0 50px #eeff00,
                     0 0 100px #eeff00;
     }
 
+    //GLOW
+    .r-sel{
+        box-shadow: 0 0 5px #e20000, 
+                    0 0 25px #e20000,
+                    0 0 50px #e20000,
+                    0 0 100px #e20000; 
+     }
+
+     .b-sel{
+        box-shadow: 0 0 5px #0105ff, 
+                    0 0 25px #0105ff,
+                    0 0 50px #0105ff,
+                    0 0 100px #0105ff;
+     }
+
+     .g-sel{
+        
+        box-shadow: 0 0 5px #18cf00, 
+                    0 0 25px #18cf00,
+                    0 0 50px #18cf00,
+                    0 0 100px #18cf00;
+    }
+
+    .y-sel{
+        box-shadow: 0 0 5px #eeff00, 
+                    0 0 25px #eeff00,
+                    0 0 50px #eeff00,
+                    0 0 100px #eeff00;
+    }
+
+    
     .top-text{
         color: white;
         clear:both;
