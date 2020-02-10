@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth'; //Autenticador para usuarios.
 import { AngularFirestore } from '@angular/fire/firestore';//Base de datos.
+import { AlertController } from 'ionic-angular';
 
 
 /*
@@ -12,7 +13,7 @@ import { AngularFirestore } from '@angular/fire/firestore';//Base de datos.
 */
 @Injectable()
 export class DatosProvider {
-  constructor(public http: HttpClient, private db: AngularFirestore, private afAuth:AngularFireAuth) {
+  constructor(public http: HttpClient, private db: AngularFirestore, private afAuth:AngularFireAuth,  public alertCtrl:AlertController) {
   }
 
   /**
@@ -70,10 +71,20 @@ export class DatosProvider {
         console.log("Document successfully written!");
       })
       .catch(function(error) {
-        console.error("Error writing document: ", error);
+        let alert = this.alertCtrl.create({
+          title:'Error',
+          subTitle: error,
+          buttons: ['Aceptar']
+        });
+        alert.present();
       });
     }).catch((err) => {
-      console.log(err);
+      let alert = this.alertCtrl.create({
+        title:'Error',
+        subTitle: err,
+        buttons: ['Aceptar']
+      });
+      alert.present();
       
     })
 
