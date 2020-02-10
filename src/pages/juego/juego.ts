@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DatosProvider } from '../../providers/datos/datos'
 import { AlertController } from 'ionic-angular';
-
+import { SmartAudioProvider } from '../../providers/smart-audio/smart-audio';
 /**
  * Generated class for the JuegoPage page.
  *
@@ -33,7 +33,7 @@ export class JuegoPage {
   private score:number =0;
   private showCheck = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public datos:DatosProvider, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public datos:DatosProvider, public alertCtrl: AlertController, public audio:SmartAudioProvider) {
     //this.highscore = datos.GetUserMaxRecord();
     datos.GetUserMaxRecord().then((res:any)=>{
       this.highscore = res;
@@ -147,10 +147,11 @@ export class JuegoPage {
           this.showCheck = true;
           this.allowInput(false);
           this.pos = 0;
+          this.audio.play("success");
           setTimeout(()=>{
               this.showCheck = false;
               this.playsequence();
-          }, 1000);    
+          }, 1500);    
         }else{
           this.pos += 1;
         }       

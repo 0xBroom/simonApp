@@ -27,6 +27,8 @@ import { MenuPage } from '../pages/menu/menu';
 import { JuegoPage } from '../pages/juego/juego';
 import { OpcionesPage } from '../pages/opciones/opciones';
 import { EstadisticasPage } from '../pages/estadisticas/estadisticas';
+import { SmartAudioProvider } from '../providers/smart-audio/smart-audio';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { EstadisticasPage } from '../pages/estadisticas/estadisticas';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DatosProvider
+    DatosProvider,
+    SmartAudioProvider,
+    NativeAudio
   ]
 })
 export class AppModule {}

@@ -12,16 +12,28 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-
+ 
 <ion-content  class="dark-bg" padding>
 
-  <div class="wrapper checkmark-bg" *ngIf="showCheck">
-      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-      viewBox="0 0 98.5 98.5" enable-background="new 0 0 98.5 98.5" xml:space="preserve">
-      <path class="checkmark" fill="none" stroke-width="8" stroke-miterlimit="10" d="M81.7,17.8C73.5,9.3,62,4,49.2,4
-      C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5-23.4l0,0L45.6,68.2L24.7,47.3"/>
-    </svg>  
+    <div class="container" *ngIf="showCheck">
+      <div class="action">
+      <div class="trophy">
+        <svg fill="#18cf00" width="100%" height="100%" viewBox="0 0 24 24">
+          <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,16.5L18,9.5L16.59,8.09L11,13.67L7.91,10.59L6.5,12L11,16.5Z"></path>
+        </svg>
+      </div>
+      <div class="confetti"></div>
+      <div class="confetti two"></div>
+      <div class="confetti three"></div>
+      <div class="confetti four"></div>
+      <div class="confetti--purple"></div>
+      <div class="confetti--purple two"></div>
+      <div class="confetti--purple three"></div>
+      <div class="confetti--purple four"></div>
+    </div>
   </div>
+
+ 
 
   <div class="top-text">Puntuación: {{score}} Puntuación máxima: {{ highscore }}</div>
   <div class="button-container">
