@@ -96,12 +96,16 @@ export class JuegoPage {
         setTimeout(()=>{
           switch(this.sequence[i]){
             case "red": this.r_sel = "r-sel";
+              this.audio.play("red");
               break;
             case "blue": this.b_sel = "b-sel";
+              this.audio.play("blue");
               break;
             case "green": this.g_sel = "g-sel";
+              this.audio.play("green");
               break;
             case "yellow": this.y_sel = "y-sel";
+              this.audio.play("yellow");
               break;
           }
           i+=1;
@@ -130,6 +134,17 @@ export class JuegoPage {
   //Verifica si el input es correcto
   checkInput(color:String){
     if(this.input){
+      //Switch para el sonido
+      switch(color){
+        case "red":this.audio.play("red");
+          break;
+        case "blue":this.audio.play("blue");
+          break;
+        case "green":this.audio.play("green");
+          break;
+        case "yellow":this.audio.play("yellow");
+          break;
+      }
       if(color != this.sequence[this.pos]){
         //Incorrecto
         if(this.highscore < this.score){

@@ -24,6 +24,10 @@ export class MyApp {
       splashScreen.hide();
       timer(3000).subscribe(() => this.showSplash = false);
       audio.preload("success", "../assets/cinf.mp3");
+      audio.preload("red", "../assets/r.mp3");
+      audio.preload("blue", "../assets/b.mp3");
+      audio.preload("green", "../assets/g.mp3");
+      audio.preload("yellow", "../assets/y.mp3");
 
       this.datosProvider.Session.subscribe(session =>{
         if(session)
