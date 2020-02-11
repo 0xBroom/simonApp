@@ -41,7 +41,7 @@ export class JuegoPage {
       this.highscore = 0;
     });
       this.sequence.push(this.getRandomColor());
-      console.log(this.sequence);
+
       setTimeout(()=>{
         this.playsequence();
       }, 800);
@@ -161,6 +161,7 @@ export class JuegoPage {
           this.sequence.push(this.getRandomColor());
           this.showCheck = true;
           this.allowInput(false);
+          console.log(this.sequence);
           this.pos = 0;
           this.audio.play("success");
           setTimeout(()=>{
@@ -189,14 +190,12 @@ export class JuegoPage {
         {
           text: 'No, salir',
           handler: () => {
-            console.log('Disagree clicked');
             this.navCtrl.pop();
           }
         },
         {
           text: 'Si',
           handler: () => {
-            console.log('Agree clicked');
             this.reset();
             this.playsequence();
           }
