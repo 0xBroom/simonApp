@@ -150,6 +150,7 @@ export class DatosProvider {
             });
         });
         MaxRecords.splice(0,1); //Eliminamos la primera posición que se crea para inicializar el array.
+        MaxRecords = MaxRecords.sort(); //ordenamos.
         resolve(MaxRecords);
       } catch (error) {
         reject(error);
