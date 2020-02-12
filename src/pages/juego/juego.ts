@@ -79,6 +79,8 @@ export class JuegoPage {
     var i = 0;
     var timer;
 
+
+    this.allowInput(false);
     timer = setInterval(()=>{
       //Reset 
       this.r_sel = ""; 
