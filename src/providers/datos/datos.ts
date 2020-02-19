@@ -4,6 +4,35 @@ import { AngularFireAuth } from 'angularfire2/auth'; //Autenticador para usuario
 import { AngularFirestore } from '@angular/fire/firestore';//Base de datos.
 import { AlertController } from 'ionic-angular';
 
+/**
+ * npm install -g cordova ionic
+ * 
+ * ionic start myApp blank --type=ionic-angular
+ * ionic start myApp tabs --type=ionic-angular
+ * ionic start myApp sidemenu --type=ionic-angular
+ * 
+ * ionic serve --lab
+ * 
+ * También podemos emular o instalar un proyecto con:
+ *  Ionic emulate <platform>
+ *  Ionic run <platform>
+ * 
+ * Por ejemplo:
+ *  Ionic emulate android
+ * 
+ * Opcionalmente podemos añadir las opciones:
+ *  --liverreload o –l
+ *  --consolelogs o -c
+ * 
+ * También podemos compilar un proyecto:
+ *  Ionic build <platform>
+ * 
+ * ionic g page pagina2
+ * 
+ * ionic g provider datos
+ * 
+ * 
+ */
 
 /*
   Generated class for the DatosProvider provider.
