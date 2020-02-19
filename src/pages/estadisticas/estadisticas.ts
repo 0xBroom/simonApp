@@ -21,10 +21,27 @@ export class EstadisticasPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public datosProvider:DatosProvider) {
     this.datosProvider.GetRecordList().then((respuesta:any) => {
-      this.datos = respuesta;
+      let data = respuesta;
+      this.datos = this.sortByColumn(data, 1);
     }).catch((error:any) => {
       console.log("Ha habido un error "+error);
     })
+  }
+
+  sortByColumn(a:[string, number][], colIndex:number){
+
+    a.sort(sortFunction);
+
+    function sortFunction(a, b) {
+        if (a[colIndex] === b[colIndex]) {
+            return 0;
+        }
+        else {
+            return (a[colIndex] < b[colIndex]) ? -1 : 1;
+        }
+    }
+
+    return a;
   }
 
   ionViewDidLoad() {
